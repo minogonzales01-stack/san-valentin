@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Gabriela ❤️</title>
+
+<!-- Fuentes -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fecfef);
+font-family:'Great Vibes',cursive;
+}
+
+/* DECORACION SUPERIOR */
+.decoracion{
+position:absolute;
+top:15px;
+width:100%;
+text-align:center;
+font-size:40px;
+color:white;
+text-shadow:0 0 15px white;
+}
+
+/* ===== SOBRE ===== */
+
+.sobre{
+width:320px;
+height:220px;
+position:relative;
+cursor:pointer;
+}
+
+.base{
+position:absolute;
+width:100%;
+height:100%;
+background:#ff4d6d;
+border-radius:12px;
+box-shadow:0 15px 30px rgba(0,0,0,.3);
+}
+
+.tapa{
+position:absolute;
+width:100%;
+height:100%;
+background:#ff758f;
+clip-path:polygon(0 0,100% 0,50% 65%);
+transform-origin:top;
+transition:1.2s;
+}
+
+.abierto .tapa{
+transform:rotateX(180deg);
+}
+
+.texto{
+position:absolute;
+top:90px;
+width:100%;
+text-align:center;
+font-size:28px;
+color:white;
+}
+
+/* ===== CARTA ===== */
+
+.carta{
+display:none;
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 35px rgba(0,0,0,.3);
+}
+
+.nombre{
+font-size:52px;
+color:#ff4d6d;
+animation:brillo 2s infinite alternate;
+}
+
+@keyframes brillo{
+from{ text-shadow:0 0 10px #ff8fa3;}
+to{
+text-shadow:
+0 0 20px #ff4d6d,
+0 0 40px #ff758f,
+0 0 60px #ffb3c1;
+}
+}
+
+.mensaje{
+font-size:36px;
+}
+
+button{
+border:none;
+padding:12px 25px;
+margin:10px;
+border-radius:12px;
+font-size:18px;
+cursor:pointer;
+font-family:Arial;
+}
+
+.si{background:#ff4d6d;color:white;}
+.no{background:#333;color:white;}
+
+/* MENSAJE NO (caligrafía más suave) */
+#mensajeNo{
+display:none;
+margin-top:15px;
+font-size:24px;
+color:#ff4d6d;
+font-family:'Playfair Display', serif;
+}
+
+/* ===== RESULTADO ===== */
+
+.resultado{
+display:none;
+text-align:center;
+color:white;
+}
+
+.resultado h1{
+font-size:50px;
+}
+
+.fraseExtra{
+font-size:34px;
+margin-top:10px;
+}
+
+/* LATIDO */
+.corazon{
+font-size:80px;
+animation:latido 0.8s infinite;
+}
+
+@keyframes latido{
+0%{transform:scale(1);}
+25%{transform:scale(1.2);}
+40%{transform:scale(1);}
+60%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+
+/* ROSAS */
+.petalo{
+position:absolute;
+top:-50px;
+font-size:24px;
+animation:caer linear forwards;
+}
+
+@keyframes caer{
+0%{transform:translateY(0) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="decoracion">Para Ti</div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9bce1a.mp3">
+</audio>
+
+<!-- SOBRE -->
+<div class="sobre" id="sobre" onclick="abrirSobre()">
+<div class="base"></div>
+<div class="tapa"></div>
+<div class="texto">Ábreme</div>
+</div>
+
+<!-- CARTA -->
+<div class="carta" id="carta">
+
+<div class="mensaje">¿Quieres ser mi San Valentín</div>
+<div class="nombre">Gabriela?</div>
+
+<button class="si" onclick="si()">SI</button>
+<button class="no" id="botonNo" onclick="no()">NO</button>
+
+<div id="mensajeNo">
+mentira yo se que si quieres
+</div>
+
+</div>
+
+<!-- RESULTADO -->
+<div class="resultado" id="resultado">
+
+<div class="corazon">❤️</div>
+
+<h1>Eres la mejor novia del mundo</h1>
+
+<div class="fraseExtra">
+yo sabía que si ibas a querer sonsa
+</div>
+
+<p style="font-size:32px;">
+Gracias por hacer mi vida más hermosa
+</p>
+
+</div>
+
+<script>
+
+function abrirSobre(){
+document.getElementById("sobre").classList.add("abierto");
+
+setTimeout(()=>{
+document.getElementById("sobre").style.display="none";
+document.getElementById("carta").style.display="block";
+iniciarPetalos();
+},1100);
+}
+
+function si(){
+document.getElementById("carta").style.display="none";
+document.getElementById("resultado").style.display="block";
+}
+
+/* NO: mensaje permanente */
+function no(){
+document.getElementById("mensajeNo").style.display="block";
+document.getElementById("botonNo").style.display="none";
+}
+
+/* rosas cayendo */
+function iniciarPetalos(){
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petalo";
+p.innerHTML="🌹";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(4+Math.random()*3)+"s";
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),7000);
+},350);
+}
+
+</script>
+
+</body>
+</html>
